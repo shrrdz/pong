@@ -24,9 +24,13 @@ typedef int             bool;
 #define BALL_SPEED      160
 
 #define PLAYER_SIZE     8
+#define PLAYER_SPEED    180
 
 //-----------------------------------------------------//
 
 float previous_tick, delta_tick;
+
+float player_x = 0;
+float player_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
 //-----------------------------------------------------//

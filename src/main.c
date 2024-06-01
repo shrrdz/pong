@@ -51,7 +51,7 @@ int main(int argc, char* agrv[])
         loop();
 
         render(layout_ball, ball_x, ball_y, BALL_SIZE, 0xFFFFFF);
-        render(layout_player, 0, HEIGHT / 2 - PLAYER_SIZE * 4, PLAYER_SIZE, 0xFFFFFF);
+        render(layout_player, player_x, player_y, PLAYER_SIZE, 0xFFFFFF);
 
         screen_update();
     }
