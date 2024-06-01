@@ -21,6 +21,7 @@ typedef int             bool;
 #define TARGET_TICK     (float) 1000 / FPS
 
 #define BALL_SIZE       1
+#define BALL_SPEED      160
 
 #define PLAYER_SIZE     8
 

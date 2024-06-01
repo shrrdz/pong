@@ -5,6 +5,38 @@
 #include "screen.h"
 #include "render.h"
 
+// ball position
+int ball_x = WIDTH / 2 - BALL_SIZE * 4;
+int ball_y = HEIGHT / 2 - BALL_SIZE * 4;
+
+// collision flags
+bool flag_x, flag_y;
+
+void loop()
+{
+    if (ball_x <= 0) // left collision
+    {
+        flag_x = TRUE;
+    }
+    else if (ball_x >= WIDTH - 8 * BALL_SIZE) // right collision
+    {
+        flag_x = FALSE;
+    }
+
+    if (ball_y <= 0) // ceiling collision
+    {
+        flag_y = TRUE;
+    }
+    else if (ball_y >= HEIGHT - 8 * BALL_SIZE) // floor collision
+    {
+        flag_y = FALSE;
+    }
+
+    // translate the ball
+    ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+    ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+}
+
 int main(int argc, char* agrv[])
 {
     screen_create();
@@ -16,7 +48,9 @@ int main(int argc, char* agrv[])
 
         screen_clear(0x000000);
 
-        render(layout_ball, WIDTH / 2 - BALL_SIZE * 4, HEIGHT / 2 - BALL_SIZE * 4, BALL_SIZE, 0xFFFFFF);
+        loop();
+
+        render(layout_ball, ball_x, ball_y, BALL_SIZE, 0xFFFFFF);
         render(layout_player, 0, HEIGHT / 2 - PLAYER_SIZE * 4, PLAYER_SIZE, 0xFFFFFF);
 
         screen_update();
