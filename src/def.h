@@ -20,6 +20,10 @@ typedef int             bool;
 #define FPS             60
 #define TARGET_TICK     (float) 1000 / FPS
 
+#define BALL_SIZE       1
+
+#define PLAYER_SIZE     8
+
 //-----------------------------------------------------//
 
 float previous_tick, delta_tick;
