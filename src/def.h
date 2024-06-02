@@ -34,3 +34,7 @@ float player_x = 0;
 float player_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
 //-----------------------------------------------------//
+
+typedef enum { FULL, DOTTED, DASHED, DASH_DOTTED } line_pattern;
+
+//-----------------------------------------------------//

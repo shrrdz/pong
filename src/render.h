@@ -27,7 +27,7 @@ const int layout_player[8][8] =
     1, 0, 0, 0, 0, 0, 0, 0,    
 };
 
-void render(const int ch[8][8], float x, float y, int scale, int color)
+void render(const int ch[8][8], int x, int y, int scale, uint32_t color)
 {
     int size = 8 * scale;
 

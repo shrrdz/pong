@@ -3,7 +3,7 @@
 #include "def.h"
 #include "screen.h"
 
-void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
+void line(float x0, float y0, float x1, float y1, uint32_t color, line_pattern pattern)
 {
     float run = x1 - x0;
     float rise = y1 - y0;
@@ -26,8 +26,7 @@ void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
 
     switch (pattern)
     {
-        // full line
-        case 0:
+        case FULL:
             for (int x = steep ? y0 : x0; steep ? (x <= y1) : (x <= x1); x++)
             {
                 int y = k * x + q;
@@ -36,8 +35,7 @@ void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
             }
         break;
 
-        // dotted line
-        case 1:
+        case DOTTED:
             for (int x = steep ? y0 : x0; steep ? (x <= y1) : (x <= x1); x += 4)
             {
                 int y = k * x + q;
@@ -46,8 +44,7 @@ void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
             }
         break;
 
-        // dashed line
-        case 2:
+        case DASHED:
             for (int x = steep ? y0 : x0; steep ? (x <= y1) : (x <= x1); x++)
             {
                 int y = k * x + q;
@@ -63,8 +60,7 @@ void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
             }
         break;
 
-        // dash-dotted line
-        case 3:
+        case DASH_DOTTED:
             for (int x = steep ? y0 : x0; steep ? (x <= y1) : (x <= x1); x++)
             {
                 int y = k * x + q;
