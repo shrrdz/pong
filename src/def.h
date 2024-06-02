@@ -35,11 +35,11 @@ typedef int             bool;
 
 float previous_tick, delta_tick;
 
-float player_left_x = 0;
-float player_left_y = HEIGHT / 2 - PLAYER_SIZE * 4;
+int player_left_x = 0;
+int player_left_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
-float player_right_x = WIDTH - PLAYER_SIZE;
-float player_right_y = HEIGHT / 2 - PLAYER_SIZE * 4;
+int player_right_x = WIDTH - PLAYER_SIZE;
+int player_right_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
 //-----------------------------------------------------//
 
