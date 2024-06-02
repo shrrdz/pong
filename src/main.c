@@ -36,10 +36,16 @@ void loop()
         flag_y = FALSE;
     }
 
-    // player collision
-    if (ball_x - 8 * BALL_SIZE <= player_x&& ball_y >= player_y && ball_y <= player_y + 8 * PLAYER_SIZE)
+    // left player collision
+    if (ball_x - 8 * BALL_SIZE <= player_left_x && ball_y >= player_left_y && ball_y <= player_left_y + 8 * PLAYER_SIZE)
     {
         flag_x = TRUE;
+    }
+
+    // right player collision
+    if (ball_x + 8 * BALL_SIZE >= player_right_x && ball_y >= player_right_y && ball_y <= player_right_y + 8 * PLAYER_SIZE)
+    {
+        flag_x = FALSE;
     }
 }
 
@@ -52,14 +58,17 @@ int main(int argc, char* agrv[])
         input();
         tick();
 
-        screen_clear(0x000000);
+        screen_clear(BLACK);
 
         loop();
 
-        line(400, 0, 400, HEIGHT - 1, 0xFFFFFF, 2);
+        line(WIDTH / 2 - 1, 0, WIDTH / 2 - 1, HEIGHT - 1, WHITE, DASHED);
+        line(WIDTH / 2, 0, WIDTH / 2, HEIGHT - 1, WHITE, DASHED);
+        line(WIDTH / 2 + 1, 0, WIDTH / 2 + 1, HEIGHT - 1, WHITE, DASHED);
 
-        render(layout_ball, ball_x, ball_y, BALL_SIZE, 0xFFFFFF);
-        render(layout_player, player_x, player_y, PLAYER_SIZE, 0xFFFFFF);
+        render(layout_ball, ball_x, ball_y, BALL_SIZE, WHITE);
+        render(layout_player, player_left_x, player_left_y, PLAYER_SIZE, WHITE);
+        render(layout_player, player_right_x, player_right_y, PLAYER_SIZE, WHITE);
 
         screen_update();
     }
