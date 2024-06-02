@@ -56,6 +56,8 @@ int main(int argc, char* agrv[])
 
         loop();
 
+        line(400, 0, 400, HEIGHT - 1, 0xFFFFFF, TRUE);
+
         render(layout_ball, ball_x, ball_y, BALL_SIZE, 0xFFFFFF);
         render(layout_player, player_x, player_y, PLAYER_SIZE, 0xFFFFFF);
 
