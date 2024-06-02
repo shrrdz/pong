@@ -14,6 +14,10 @@ bool flag_x, flag_y;
 
 void loop()
 {
+    // translate the ball
+    ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+    ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+
     if (ball_x <= 0) // left collision
     {
         flag_x = TRUE;
@@ -32,9 +36,11 @@ void loop()
         flag_y = FALSE;
     }
 
-    // translate the ball
-    ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
-    ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+    // player collision
+    if (ball_x - 8 * BALL_SIZE <= player_x&& ball_y >= player_y && ball_y <= player_y + 8 * PLAYER_SIZE)
+    {
+        flag_x = TRUE;
+    }
 }
 
 int main(int argc, char* agrv[])
