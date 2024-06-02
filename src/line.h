@@ -78,6 +78,7 @@ void line(float x0, float y0, float x1, float y1, uint32_t color, int pattern)
                 else
                 {
                     x += 4;
+                    y = k * x + q;
 
                     screen_pixel(steep ? y : x, steep ? x : y, color);
                     
