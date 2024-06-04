@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdint.h>
 
 //-----------------------------------------------------//
@@ -30,15 +31,16 @@ typedef int             bool;
 
 #define PLAYER_SIZE     8
 #define PLAYER_SPEED    180
+#define PLAYER_OFFSET   16
 
 //-----------------------------------------------------//
 
 float previous_tick, delta_tick;
 
-int player_left_x = 0;
+int player_left_x = PLAYER_OFFSET;
 int player_left_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
-int player_right_x = WIDTH - PLAYER_SIZE;
+int player_right_x = WIDTH - PLAYER_SIZE - PLAYER_OFFSET;
 int player_right_y = HEIGHT / 2 - PLAYER_SIZE * 4;
 
 //-----------------------------------------------------//
