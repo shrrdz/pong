@@ -18,13 +18,19 @@ void loop()
     ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
     ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
 
-    if (ball_x <= 0) // left collision
+    // ball y position after any player scores
+    int reset_position = rand() % (HEIGHT - 1 - 0 + 1) + 0;
+
+    // ball y direction after any player scores
+    int reset_direction= rand() % (1 - 0 + 1) + 0;
+    
+    // left & right collision
+    if (ball_x <= 0 || ball_x >= WIDTH - 8 * BALL_SIZE)
     {
-        flag_x = TRUE;
-    }
-    else if (ball_x >= WIDTH - 8 * BALL_SIZE) // right collision
-    {
-        flag_x = FALSE;
+        ball_x = WIDTH / 2 - BALL_SIZE * 4;
+        ball_y = reset_position;
+
+        flag_y = reset_direction ? TRUE : FALSE;
     }
 
     if (ball_y <= 0) // ceiling collision
