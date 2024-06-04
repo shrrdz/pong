@@ -50,13 +50,13 @@ void loop()
     }
 
     // left player collision
-    if (ball_x - 8 * BALL_SIZE <= player_left_x && ball_y >= player_left_y && ball_y <= player_left_y + 8 * PLAYER_SIZE)
+    if (ball_x - 8 * BALL_SIZE == player_left_x && ball_y >= player_left_y && ball_y <= player_left_y + 8 * PLAYER_SIZE)
     {
         flag_x = TRUE;
     }
 
     // right player collision
-    if (ball_x + 8 * BALL_SIZE >= player_right_x && ball_y >= player_right_y && ball_y <= player_right_y + 8 * PLAYER_SIZE)
+    if (ball_x + 8 * BALL_SIZE == player_right_x && ball_y >= player_right_y && ball_y <= player_right_y + 8 * PLAYER_SIZE)
     {
         flag_x = FALSE;
     }
