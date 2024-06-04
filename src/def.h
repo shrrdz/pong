@@ -33,6 +33,8 @@ typedef int             bool;
 #define PLAYER_SPEED    180
 #define PLAYER_OFFSET   16
 
+#define RESET_COOLDOWN  3
+
 //-----------------------------------------------------//
 
 float previous_tick, delta_tick;

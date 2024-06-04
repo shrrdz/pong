@@ -12,11 +12,20 @@ int ball_y = HEIGHT / 2 - BALL_SIZE * 4;
 // collision flags
 bool flag_x, flag_y;
 
+// ball reset
+bool flag_reset;
+float reset = RESET_COOLDOWN;
+
+uint32_t ball_color = WHITE;
+
 void loop()
 {
-    // translate the ball
-    ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
-    ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+    if (!flag_reset)
+    {
+        // translate the ball
+        ball_x += flag_x ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+        ball_y += flag_y ? BALL_SPEED * delta_tick : -BALL_SPEED * delta_tick;
+    }
 
     // ball y position after any player scores
     int reset_position = rand() % (HEIGHT - 1 - 0 + 1) + 0;
@@ -27,10 +36,8 @@ void loop()
     // left & right collision
     if (ball_x <= 0 || ball_x >= WIDTH - 8 * BALL_SIZE)
     {
-        ball_x = WIDTH / 2 - BALL_SIZE * 4;
-        ball_y = reset_position;
-
-        flag_y = reset_direction ? TRUE : FALSE;
+        flag_reset = TRUE;
+        ball_color = BLACK;
     }
 
     if (ball_y <= 0) // ceiling collision
@@ -53,6 +60,23 @@ void loop()
     {
         flag_x = FALSE;
     }
+
+    // reset the ball upon scoring
+    if (flag_reset && reset > 0)
+    {
+        reset -= 1 * delta_tick;
+    }
+    else if (reset <= 0)
+    {
+        ball_x = WIDTH / 2 - BALL_SIZE * 4;
+        ball_y = reset_position;
+        ball_color = WHITE;
+
+        flag_y = reset_direction ? TRUE : FALSE;
+
+        reset = RESET_COOLDOWN;
+        flag_reset = FALSE;
+    }
 }
 
 int main(int argc, char* agrv[])
@@ -72,7 +96,7 @@ int main(int argc, char* agrv[])
         line(WIDTH / 2, 0, WIDTH / 2, HEIGHT - 1, WHITE, DASHED);
         line(WIDTH / 2 + 1, 0, WIDTH / 2 + 1, HEIGHT - 1, WHITE, DASHED);
 
-        render(layout_ball, ball_x, ball_y, BALL_SIZE, WHITE);
+        render(layout_ball, ball_x, ball_y, BALL_SIZE, ball_color);
         render(layout_player, player_left_x, player_left_y, PLAYER_SIZE, WHITE);
         render(layout_player, player_right_x, player_right_y, PLAYER_SIZE, WHITE);
 
