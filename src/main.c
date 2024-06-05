@@ -6,8 +6,8 @@
 #include "render.h"
 
 // ball position
-int ball_x = WIDTH / 2 - BALL_SIZE * 4;
-int ball_y = HEIGHT / 2 - BALL_SIZE * 4;
+float ball_x = WIDTH / 2 - BALL_SIZE * 4;
+float ball_y = HEIGHT / 2 - BALL_SIZE * 4;
 
 // collision flags
 bool flag_x, flag_y;
@@ -50,13 +50,15 @@ void loop()
     }
 
     // left player collision
-    if (ball_x - 8 * BALL_SIZE == player_left_x && ball_y >= player_left_y && ball_y <= player_left_y + 8 * PLAYER_SIZE)
+    if (ball_x - 8 * BALL_SIZE <= player_left_x && ball_x - 8 * BALL_SIZE >= player_left_x - 4 &&
+        ball_y >= player_left_y && ball_y <= player_left_y + 8 * PLAYER_SIZE)
     {
         flag_x = TRUE;
     }
 
     // right player collision
-    if (ball_x + 8 * BALL_SIZE == player_right_x && ball_y >= player_right_y && ball_y <= player_right_y + 8 * PLAYER_SIZE)
+    if (ball_x + 8 * BALL_SIZE >= player_right_x && ball_x + 8 * BALL_SIZE <= player_right_x + 4 &&
+        ball_y >= player_right_y && ball_y <= player_right_y + 8 * PLAYER_SIZE)
     {
         flag_x = FALSE;
     }
