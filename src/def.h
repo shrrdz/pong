@@ -37,16 +37,17 @@ typedef int             bool;
 
 //-----------------------------------------------------//
 
-float previous_tick, delta_tick;
+typedef struct { int x, y; uint32_t color; } entity;
 
-int player_left_x = PLAYER_OFFSET;
-int player_left_y = HEIGHT / 2 - PLAYER_SIZE * 4;
-
-int player_right_x = WIDTH - PLAYER_SIZE - PLAYER_OFFSET;
-int player_right_y = HEIGHT / 2 - PLAYER_SIZE * 4;
+typedef enum { FULL, DOTTED, DASHED, DASH_DOTTED } line_pattern;
 
 //-----------------------------------------------------//
 
-typedef enum { FULL, DOTTED, DASHED, DASH_DOTTED } line_pattern;
+float previous_tick, delta_tick;
+
+entity ball = { WIDTH / 2 - BALL_SIZE * 4, HEIGHT / 2 - BALL_SIZE * 4, WHITE };
+
+entity player_left = { PLAYER_OFFSET, HEIGHT / 2 - PLAYER_SIZE * 4, WHITE };
+entity player_right = { WIDTH - PLAYER_SIZE - PLAYER_OFFSET, HEIGHT / 2 - PLAYER_SIZE * 4, WHITE };
 
 //-----------------------------------------------------//
