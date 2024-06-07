@@ -11,9 +11,9 @@ Revolutionary game Pong remade in C programming language.
 - [x] ball reset
 - [ ] score system
 
-### Dependencies
+## Dependencies
 - [SDL](https://github.com/libsdl-org/SDL/releases/latest)
 
-### Building
+## Building
 - Run the Makefile included in the project using `$ make`.
 - The executable, once built, can be found in `./out/`.
